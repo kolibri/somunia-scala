@@ -1,79 +1,6 @@
 import Battle._
 
 object Somunia {
-  /*
-  class MultiEventQueue(val queues: List[BattlerEventQueue], val actionFactory: Battle.ActionFactory) {
-    def hasEvent(progress: Int): Boolean = {
-      for (queue: BattlerEventQueue <- this.queues)
-        if (queue.hasEvent(progress)) return true
-      false
-    }
-
-    def nextProgress(progress: Int) = {
-      progress + 1 // Here is the increment
-    }
-
-    def event(progress: Int): Battle.Action = {
-      for (queue: BattlerEventQueue <- this.queues)
-        if (queue.hasEvent(progress)) return queue.event(progress)
-      this.actionFactory.createFinishAction()
-    }
-  }
-
-  class Director(val queue: MultiEventQueue, var progress: Int) {
-    def nextEvent: Battle.Action = {
-      this.progress = this.queue.nextProgress(this.progress)
-      println("Progress: " + progress)
-      this.queue.event(this.progress)
-    }
-
-    def hasEvent: Boolean = {
-      this.queue.hasEvent(this.progress)
-    }
-  }
-
-  class Battle(val Battle.BattlerManager: Battle.BattlerManager, val eventHandler: Battle.EventHandler, val director: Director) {
-
-    def playRound(): Unit = {
-      while (this.director.hasEvent) {
-        //for (event <- this.queue.event if this.queue.hasEvent) {
-
-        val event = this.director.nextEvent
-
-        if (this.eventHandler.canHandle(event))
-          this.eventHandler.handle(event)
-
-        // Debug output
-        for (group <- Battle.BattlerManager.groups)
-          for (member <- group.members)
-            println(member.name + ": HP: " + member.stats("hp").current + "/" + member.stats("hp").max)
-      }
-    }
-  }
-  */
-  // ## // ## // ## // ## // ## // ## // ## // ## // ## // ##
-
-/*
-  val playerQueue = new BattlerActionQueue(player)
-val encounterQueue = new BattlerActionQueue(encounter)
-
-val multiQueue = new MultiBattlerQueue(List(playerQueue, encounterQueue))
-
-val eventHandler = new EventHandler(actionFactory)
-
-var next: Int = multiQueue.nextEventProgress(multiQueue.currentProgress)
-
-for (i <- 0 to 7) {
-  val event = multiQueue.getEvent(multiQueue.nextEventProgress(multiQueue.currentProgress))
-  println(event)
-  eventHandler.handle(event)
-  println(player.name + ": " + player.stats("hp").current)
-  println(encounter.name + ": " + encounter.stats("hp").current)
-}
-
-
-   */
-
   val player = new Battler("player", Map(
     "hp" -> new StatusValue(100),
     "mp" -> new StatusValue(50),
@@ -93,26 +20,8 @@ for (i <- 0 to 7) {
   //
   //val eventHandler = new ActionEventHandler
 
-  val BattlerManager = new BattlerManager(List(players, encounters))
-  val actionFactory = new ActionFactory(BattlerManager)
-  /*
-  val playerEventQueue = new BattlerEventQueue(player, actionFactory)
-  val encounterEventQueue = new BattlerEventQueue(encounter, actionFactory)
-  val multiQueue = new MultiEventQueue(List(playerEventQueue, encounterEventQueue), actionFactory)
-
-  val director = new Director(multiQueue, 0)
-
-  val battle = new Battle(
-    Battle.BattlerManager,
-    eventHandler,
-    director
-  )
-
-  println(player.name + ": HP: " + player.stats("hp").current + "/" + player.stats("hp").max)
-  println(encounter.name + ":  HP: " + encounter.stats("hp").current + "/" + encounter.stats("hp").max)
-
-  battle.playRound()
-  */
+  val battlerManager = new BattlerManager(List(players, encounters))
+  val actionFactory = new ActionFactory(battlerManager)
 
   // Test for BattlerEventQueue
 
@@ -122,8 +31,26 @@ for (i <- 0 to 7) {
 
   val eventHandler = new EventHandler(actionFactory)
 
+  val director = new Battle.Director(multiQueue, 0)
+
+  val battle = new Battle(
+    battlerManager,
+    eventHandler,
+    director
+  )
+
+
   def main(args: Array[String]) {
-    var next: Int = multiQueue.nextEventProgress(multiQueue.currentProgress)
+
+    println(player.name + ": HP: " + player.stats("hp").current + "/" + player.stats("hp").max)
+    println(encounter.name + ":  HP: " + encounter.stats("hp").current + "/" + encounter.stats("hp").max)
+
+    battle.playRound()
+
+    println(player.name + ": HP: " + player.stats("hp").current + "/" + player.stats("hp").max)
+    println(encounter.name + ":  HP: " + encounter.stats("hp").current + "/" + encounter.stats("hp").max)
+
+/*    var next: Int = multiQueue.nextEventProgress(multiQueue.currentProgress)
 
     for (i <- 0 to 7) {
       val event = multiQueue.getEvent(multiQueue.nextEventProgress(multiQueue.currentProgress))
@@ -131,7 +58,7 @@ for (i <- 0 to 7) {
       eventHandler.handle(event)
       println(player.name + ": " + player.stats("hp").current)
       println(encounter.name + ": " + encounter.stats("hp").current)
-    }
+    }*/
   }
 }
 /*

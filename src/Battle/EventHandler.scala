@@ -14,4 +14,16 @@ class EventHandler(val actionFactory: ActionFactory) {
     case None => {}
   }
 
+  def canHandle(someEvent: Option[Event]): Boolean = someEvent match {
+    case Some(event) => {
+      event match {
+        case event: ActionEvent => true
+        case event: CreateActionEvent => true
+      }
+    }
+
+      false
+  }
+
+
 }
