@@ -53,6 +53,27 @@ object Somunia {
   */
   // ## // ## // ## // ## // ## // ## // ## // ## // ## // ##
 
+/*
+  val playerQueue = new BattlerActionQueue(player)
+val encounterQueue = new BattlerActionQueue(encounter)
+
+val multiQueue = new MultiBattlerQueue(List(playerQueue, encounterQueue))
+
+val eventHandler = new EventHandler(actionFactory)
+
+var next: Int = multiQueue.nextEventProgress(multiQueue.currentProgress)
+
+for (i <- 0 to 7) {
+  val event = multiQueue.getEvent(multiQueue.nextEventProgress(multiQueue.currentProgress))
+  println(event)
+  eventHandler.handle(event)
+  println(player.name + ": " + player.stats("hp").current)
+  println(encounter.name + ": " + encounter.stats("hp").current)
+}
+
+
+   */
+
   val player = new Battler("player", Map(
     "hp" -> new StatusValue(100),
     "mp" -> new StatusValue(50),
@@ -94,14 +115,18 @@ object Somunia {
   */
 
   // Test for BattlerEventQueue
-  val queue = new BattlerActionQueue(player)
+
+  val playerQueue = new BattlerActionQueue(player)
+  val encounterQueue = new BattlerActionQueue(encounter)
+  val multiQueue = new MultiBattlerQueue(List(playerQueue, encounterQueue))
 
   val eventHandler = new EventHandler(actionFactory)
+
   def main(args: Array[String]) {
-    var next: Int = queue.nextEventProgress(queue.currentProgress)
+    var next: Int = multiQueue.nextEventProgress(multiQueue.currentProgress)
 
     for (i <- 0 to 7) {
-      val event = queue.getEvent(queue.nextEventProgress(queue.currentProgress))
+      val event = multiQueue.getEvent(multiQueue.nextEventProgress(multiQueue.currentProgress))
       println(event)
       eventHandler.handle(event)
       println(player.name + ": " + player.stats("hp").current)
