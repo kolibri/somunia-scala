@@ -8,6 +8,7 @@ class MultiBattlerQueue (val battlers: List[BattlerActionQueue]) {
   var currentProgress: Int = 0
 
   def getEvent(progress: Int): Option[Event] = {
+    currentProgress = this.nextQueue(progress).nextEventProgress(progress)
     this.nextQueue(progress).getEvent(progress)
   }
 

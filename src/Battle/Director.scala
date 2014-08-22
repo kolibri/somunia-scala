@@ -5,10 +5,15 @@ package Battle
  */
 class Director(val queue: MultiBattlerQueue, var progress: Int) {
   def nextEvent: Option[Event] = {
-    queue.getEvent(this.progress)
+    val newProgress = this.queue.nextEventProgress(progress)
+    val event = queue.getEvent(progress)
+    progress = newProgress
+
+    event
   }
 
   def hasEvent: Boolean = {
-    this.queue.hasEvent(this.progress)
+    true
+//    this.queue.hasEvent(this.progress)
   }
 }

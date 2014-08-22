@@ -39,7 +39,6 @@ object Somunia {
     director
   )
 
-
   def main(args: Array[String]) {
 
     println(player.name + ": HP: " + player.stats("hp").current + "/" + player.stats("hp").max)
