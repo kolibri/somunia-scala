@@ -1,4 +1,6 @@
-import Battle._
+package com.somunia
+
+import com.somunia.battle
 
 object Somunia {
   val player = new Battler("player", Map(

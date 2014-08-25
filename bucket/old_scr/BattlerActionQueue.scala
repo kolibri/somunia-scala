@@ -1,4 +1,4 @@
-package Battle
+package com.somunia.battle
 
 import scala.None
 

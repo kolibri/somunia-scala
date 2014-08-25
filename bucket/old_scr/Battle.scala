@@ -1,4 +1,4 @@
-package Battle
+package com.somunia.battle
 
 /**
  * Created by kolibri on 15.08.14.
