@@ -1,33 +1,35 @@
 package com.somunia.battle
 
-import org.scalatest.FunSuite
-import org.scalamock.scalatest.MockFactory
+import org.scalatest._
 
-class ActionSuite extends FunSuite with MockFactory {
+class ActionSuite extends FunSuite with Matchers {
  
   test("Action can be initiliazed") {
-    val effect = mock[Effect]
-    val action = new Action(effect, 1, 1.5, 2)
+    val effect = new Effect(3,1)
+    val action = new Action(effect, 7)
 
     assert(action.effect      == effect)
-    assert(action.progress    == 1)
-    assert(action.preparation == 1.5)
-    assert(action.cooldown    == 2)
-    assert(action.toEffect    == 2.5)
-    assert(action.toSelect    == 4.5)
+    assert(action.progress    == 7)
+    assert(action.toEffect    == 10)
+    assert(action.toSelect    == 11)
   }
 
   test("Action can calulate progress no next event") {
-    val effect = mock[Effect]
-    val action = new Action(effect, 1, 1.5, 2)
+    val effect = new Effect(3,1)
+    val action = new Action(effect, 7)
 
-    assert(action.distanceTo(0) == 2.5)
-    assert(action.distanceTo(2.5) == 0) // Effect
+    var progress = 0;
 
-    assert(action.distanceTo(2.6) == 1.9) 
-    assert(action.distanceTo(4.5) == 0) // Choose Action
+    progress = action.distanceTo(progress);
+    progress should be (10)
 
-    assert(action.distanceTo(5) == 0) // Choose Action 
+
+//    assert(action.distanceTo(0) == 10)
+//    assert(action.distanceTo(10) == 0) // Effect
+//    action.distanceTo(10.1) should be (0.9)
+//    assert(action.distanceTo(11) == 0) // Choose Action
+//
+//    assert(action.distanceTo(11.01) == 0) // Choose Action 
   }
 }
 
