@@ -6,11 +6,6 @@ class Coordinator(val competitors: List[Competitor]) {
         for (current: Competitor <- competitors) {
             if (current.distanceTo(progress) < competitor.distanceTo(progress)) competitor = current
         }
-
-        if (competitor.needsAction(progress)) {
-            competitor.action = new Action(new Effect(3, 5), progress)
-            competitor = nextCompetitor(progress)
-        }
         competitor
     }
 }

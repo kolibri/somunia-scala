@@ -27,10 +27,10 @@ class CoordinatorSuite extends FunSuite {
     current = coordinator.nextCompetitor(currentProgress)
     assert(current == competitorA, "currentProgress: " + currentProgress)
 
-    current.action.takeEffect()
-    currentProgress = currentProgress + current.distanceTo(currentProgress)
-    current = coordinator.nextCompetitor(currentProgress)
-    assert(current == competitorB, "currentProgress: " + currentProgress)
+    //current.action.takeEffect()
+    //currentProgress = currentProgress + current.distanceTo(currentProgress)
+    //current = coordinator.nextCompetitor(currentProgress)
+    //assert(current == competitorB, "currentProgress: " + currentProgress)
 
 
     current.action.takeEffect()
