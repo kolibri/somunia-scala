@@ -1,3 +1,3 @@
 package com.somunia.battle
 
-class Effect(val preparation: Double, val cooldown: Double)
+class Effect(val preparation: Int, val cooldown: Int)
