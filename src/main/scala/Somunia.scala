@@ -9,11 +9,12 @@ object Somunia {
   val competitorB  = new Competitor(actionB, "B")
   val coordinator = new Coordinator(List(competitorA, competitorB))
   val actionHandler = new ActionHandler
-  val competitorHandler = new CompetitorHandler(actionHandler)
+  val actionCreator = new ActionCreator
+  val competitorHandler = new CompetitorHandler(actionHandler, actionCreator)
 
   var director = new Director(coordinator, competitorHandler)
 
-  def play = {
+  def play() = {
     // run game here
     director.doTurn()
     director.doTurn()
@@ -30,7 +31,7 @@ object Somunia {
 
   def main(args: Array[String]) {
     println("Somunia game started.")
-    play
+    play()
     println("game over - bye! \\(^)>")
   }
 }

@@ -1,10 +1,10 @@
 package com.somunia.battle
 
 class Action(val effect: Effect, val progress: Int) {
-    var effectIsNotTaken: Boolean = true
+    var effectIsUnhandled: Boolean = true
 
     def distanceTo(targetProgress: Int): Int = {
-        if (effectIsNotTaken) {
+        if (effectIsUnhandled) {
             if (targetProgress <= this.toEffect) return this.toEffect - targetProgress
         } else {
             if (targetProgress <= this.toSelect) return this.toSelect - targetProgress
@@ -13,7 +13,7 @@ class Action(val effect: Effect, val progress: Int) {
     }
 
     def takeEffect(): Effect = {
-        effectIsNotTaken = false
+        effectIsUnhandled = false
         effect
     }
 
