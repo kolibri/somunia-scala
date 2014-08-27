@@ -6,7 +6,7 @@ package com.somunia.battle
 
 import org.scalatest._
 
-class ActionCreatorSuite extends FunSuite {
+class ActionCreatorTest extends FunSuite {
   test("Actioncreator tests") {
 
   }

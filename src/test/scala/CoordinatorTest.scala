@@ -2,7 +2,7 @@ package com.somunia.battle
 
 import org.scalatest.FunSuite
 
-class CoordinatorSuite extends FunSuite {
+class CoordinatorTest extends FunSuite {
   val actionA = new Action(new Effect(3,4), 7)
   val competitorA  = new Competitor(actionA)
   val actionB = new Action(new Effect(8,2), 4)

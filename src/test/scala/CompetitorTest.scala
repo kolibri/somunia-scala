@@ -2,7 +2,7 @@ package com.somunia.battle
 
 import org.scalatest.FunSuite
 
-class CompetitorSuite extends FunSuite {
+class CompetitorTest extends FunSuite {
   val action = new Action(new Effect(3,4), 7)
   val competitor  = new Competitor(action)
  

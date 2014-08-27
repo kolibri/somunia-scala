@@ -2,7 +2,7 @@ package com.somunia.battle
 
 import org.scalatest.FunSuite
 
-class EffectSuite extends FunSuite {
+class EffectTest extends FunSuite {
     test("Effect can be initialized") {
         val effect = new Effect(3, 1)
 

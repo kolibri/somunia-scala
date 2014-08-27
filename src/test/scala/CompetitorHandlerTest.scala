@@ -2,7 +2,7 @@ package com.somunia.battle
 
 import org.scalatest.FunSuite
 
-class CompetitorHandlerSuite extends FunSuite {
+class CompetitorHandlerTest extends FunSuite {
     test("CompetitorHandler assings new action to Competitor") {
         val handler = new CompetitorHandler(new ActionHandler, new ActionCreator)
 
