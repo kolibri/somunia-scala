@@ -4,9 +4,9 @@ import com.somunia.battle._
 
 object Somunia {
   val actionA = new Action(new Effect(3,4), 7)
-  val competitorA  = new Competitor(actionA)
+  val competitorA  = new Competitor(actionA, "A")
   val actionB = new Action(new Effect(8,2), 4)
-  val competitorB  = new Competitor(actionB)
+  val competitorB  = new Competitor(actionB, "B")
   val coordinator = new Coordinator(List(competitorA, competitorB))
   val actionHandler = new ActionHandler
   val competitorHandler = new CompetitorHandler(actionHandler)
