@@ -8,11 +8,23 @@ object Somunia {
   val actionB = new Action(new Effect(8,2), 4)
   val competitorB  = new Competitor(actionB)
   val coordinator = new Coordinator(List(competitorA, competitorB))
-  val competitorHandler = new CompetitorHandler
+  val actionHandler = new ActionHandler
+  val competitorHandler = new CompetitorHandler(actionHandler)
+
   var director = new Director(coordinator, competitorHandler)
 
   def play = {
     // run game here
+    director.doTurn()
+    director.doTurn()
+    director.doTurn()
+    director.doTurn()
+    director.doTurn()
+
+    director.doTurn()
+    director.doTurn()
+    director.doTurn()
+    director.doTurn()
     director.doTurn()
   }
 

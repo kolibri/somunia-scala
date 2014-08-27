@@ -1,3 +1,5 @@
 package com.somunia.battle
 
-class Effect(val preparation: Int, val cooldown: Int)
+class Effect(val preparation: Int, val cooldown: Int) {
+    val text = "effect"
+}

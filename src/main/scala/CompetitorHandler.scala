@@ -1,10 +1,12 @@
 package com.somunia.battle
 
-class CompetitorHandler {
+class CompetitorHandler(val actionHandler: ActionHandler) {
     def handle(competitor: Competitor, progress: Int): Unit = {
-        if (competitor.needsAction(progress))
+        if (competitor.needsAction(progress)) {
+
             competitor.action = new Action(new Effect(3, 5), progress)
-        else
-            println("handle effect")
+            println("Choosed action")
+            } else
+            actionHandler.handle(competitor.action)
     }
 }
