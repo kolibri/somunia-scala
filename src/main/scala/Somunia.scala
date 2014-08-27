@@ -1,6 +1,6 @@
 package com.somunia
 
-import com.somunia.battle
+import com.somunia.battle._
 
 object Somunia {
   val actionA = new Action(new Effect(3,4), 7)
